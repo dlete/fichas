@@ -1,4 +1,8 @@
 Fichas::Application.routes.draw do
+  get "administration/wipe"
+
+  get "administration/populate"
+
   resources :workdays
 
   # The priority is based upon order of creation:
