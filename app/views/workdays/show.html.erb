@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Working date:</b>
+  <%= @workday.working_date %>
+</p>
+
+<p>
+  <b>Working hours:</b>
+  <%= @workday.working_hours %>
+</p>
+
+
+<%= link_to 'Edit', edit_workday_path(@workday) %> |
+<%= link_to 'Back', workdays_path %>

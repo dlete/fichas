@@ -1,0 +1,26 @@
+<h1>Listing workdays</h1>
+
+<div id="calendar">  
+  <h2 id="month">  
+    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>  
+    <%= h @date.strftime("%B %Y") %>  
+    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-01") %>  
+  </h2>
+
+  <%= calendar_for @workdays, :year => @date.year, :month => @date.month do |calendar| %>  
+    <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+    <%= calendar.day(:day_method => :working_date) do |date, workdays| %>  
+      <%= date.day %>  
+      <ul>  
+        <% for workday in workdays %>  
+          <li><%= link_to h(workday.working_hours), workday %></li>  
+        <% end %>  
+      </ul> 
+    <% end %>  
+  <% end %>  
+</div>  
+
+
+<br />
+
+<%= link_to 'New Workday', new_workday_path %>

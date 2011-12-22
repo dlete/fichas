@@ -1,4 +1,6 @@
 Fichas::Application.routes.draw do
+  resources :workdays
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
