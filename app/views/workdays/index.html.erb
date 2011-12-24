@@ -1,5 +1,7 @@
 <h1>Listing workdays</h1>
 
+<h3> <%= current_user.email %> </h3>
+
 <div id="calendar">  
   <h2 id="month">  
     <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>  
