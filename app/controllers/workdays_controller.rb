@@ -3,6 +3,7 @@ class WorkdaysController < ApplicationController
   # GET /workdays.json
   def index
     @workdays = Workday.all
+    @workdays = current_user.workdays
     @date = params[:month] ? Date.parse(params[:month]) : Date.today  
 
     respond_to do |format|
