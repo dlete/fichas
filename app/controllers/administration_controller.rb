@@ -18,6 +18,7 @@ def populate_all_week
     @workday = Workday.new
     @workday.working_date = n
     @workday.working_hours = "8"
+    @workday.user_id = current_user.id
     @workday.save
   end
 end

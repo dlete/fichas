@@ -42,6 +42,7 @@ class WorkdaysController < ApplicationController
   # POST /workdays.json
   def create
     @workday = Workday.new(params[:workday])
+    @workday.user_id = current_user.id
 
     respond_to do |format|
       if @workday.save
