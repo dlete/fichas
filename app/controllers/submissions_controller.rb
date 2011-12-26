@@ -1,4 +1,15 @@
 class SubmissionsController < ApplicationController
+
+def submit_for_approval
+  set_submitter
+  redirect_to workdays_path
+end
+
+def set_submitter
+  @submission = Submission.new
+  @submission.save
+end
+
   # GET /submissions
   # GET /submissions.json
   def index
@@ -27,10 +38,16 @@ class SubmissionsController < ApplicationController
     load_auxiliary_data
     @submission = Submission.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @submission }
-    end
+# dlete
+@submission.submitter_id = current_user.id
+@submission.save
+redirect_to workdays_path
+# dlete
+
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.json { render json: @submission }
+#    end
   end
 
   # GET /submissions/1/edit

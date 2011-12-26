@@ -1,18 +1,18 @@
 class AdministrationController < ApplicationController
   def populate
-    populate_all_week
+    populate_all_month
     redirect_to workdays_path
   end
 
   def wipe
-    delete_all_week
+    delete_all_month
     redirect_to workdays_path
   end
 
 
-def populate_all_week
-  sd = Date.today.beginning_of_week
-  ed = Date.today.end_of_week
+def populate_all_month
+  sd = Date.today.beginning_of_month
+  ed = Date.today.end_of_month
   sd.upto(ed) do |n|
     puts n
     @workday = Workday.new
@@ -23,10 +23,10 @@ def populate_all_week
   end
 end
 
-def delete_all_week
-  sd = Date.today.beginning_of_week
-  ed = Date.today.end_of_week
-  @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => Date.today.beginning_of_week..Date.today.end_of_week })
+def delete_all_month
+  sd = Date.today.beginning_of_month
+  ed = Date.today.end_of_month
+  @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => Date.today.beginning_of_month..Date.today.end_of_month })
   @dispose_of.each do |d|
     d.destroy
   end
