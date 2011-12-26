@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
   has_many :manager, :class_name => 'Department', :foreign_key => 'manager_id'
   has_many :deputy, :class_name => 'Department', :foreign_key => 'deputy_id'
   belongs_to :department
+
+  has_many :submitter, :class_name => 'User', :foreign_key => 'submitter_id'
+  has_many :approver, :class_name => 'User', :foreign_key => 'approver_id'
 end

@@ -1,4 +1,6 @@
 Fichas::Application.routes.draw do
+  resources :submissions
+
   resources :departments
 
   get "logout" => "sessions#destroy", :as => "logout"
