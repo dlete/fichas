@@ -1,6 +1,28 @@
 <h1>Listing submissions</h1>
 
 <table>
+<% @departments_managed_by_user.each do |department| %>
+  <tr>
+    <th><%= department.name %></th>
+  </tr>
+  <tr>
+    <th>Submitter</th>
+  </tr>
+  <% department.users.each do |user| %>
+  <tr>
+      <td><%= user.email %></td>
+      <% @pending_approval_for_user = Submission.find(:all, :conditions => { :submitter_id => user.id, :approver_id => nil }) %>
+      <% @pending_approval_for_user.each do |submission| %>
+      <td><%= link_to 'Pending approval', edit_submission_path(submission) %></td>
+      <% end %>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<br />
+
+
+<table>
   <tr>
     <th>Submitter</th>
     <th>Approver</th>
@@ -12,7 +34,6 @@
 <% @submissions.each do |submission| %>
   <tr>
     <td><%= submission.submitter.email %></td>
-    <td><%= submission.approver.email %></td>
     <td><%= link_to 'Show', submission %></td>
     <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
     <td><%= link_to 'Destroy', submission, confirm: 'Are you sure?', method: :delete %></td>

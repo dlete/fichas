@@ -6,13 +6,19 @@ def submit_for_approval
 end
 
 def set_submitter
-  @submission = Submission.new
-  @submission.save
+  sd = Date.today.beginning_of_month
+  ed = Date.today.end_of_month
+  @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => Date.today.beginning_of_month..Date.today.end_of_month })
+  for d in @workdays_to_set_submitter
+    d.submission_id = User.find(current_user.id).submissions.last.id
+    d.save 
+  end
 end
 
   # GET /submissions
   # GET /submissions.json
   def index
+    @departments_managed_by_user = current_user.manager
     @submissions = Submission.all
 
     respond_to do |format|
@@ -25,6 +31,8 @@ end
   # GET /submissions/1.json
   def show
     @submission = Submission.find(params[:id])
+    @workdays = @submission.submitter.workdays
+@date = params[:month] ? Date.parse(params[:month]) : Date.today
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,6 +49,7 @@ end
 # dlete
 @submission.submitter_id = current_user.id
 @submission.save
+set_submitter
 redirect_to workdays_path
 # dlete
 
@@ -53,7 +62,9 @@ redirect_to workdays_path
   # GET /submissions/1/edit
   def edit
     load_auxiliary_data
+@date = params[:month] ? Date.parse(params[:month]) : Date.today
     @submission = Submission.find(params[:id])
+@workdays = @submission.submitter.workdays
   end
 
   # POST /submissions
@@ -76,6 +87,7 @@ redirect_to workdays_path
   # PUT /submissions/1.json
   def update
     @submission = Submission.find(params[:id])
+    @submission.approver_id = current_user.id
 
     respond_to do |format|
       if @submission.update_attributes(params[:submission])
