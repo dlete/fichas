@@ -1,6 +1,7 @@
 <h1>Listing workdays</h1>
 
 <h3> <%= current_user.email %> </h3>
+<h3> <%= @date.strftime("%A, %d %B %Y") %></h3>
 
 <div id="calendar">  
   <h2 id="month">  
@@ -15,7 +16,11 @@
       <%= date.day %>  
       <ul>  
         <% for workday in workdays %>  
-          <li><%= link_to h(workday.user.email), workday %></li>  
+          <% if (workday.submission_id.nil?) %>
+            <li><%= link_to h(workday.user.email), workday %></li>
+          <% else %>
+            <li><%= workday.user.email %></li>
+          <% end %>
         <% end %>  
       </ul> 
     <% end %>  

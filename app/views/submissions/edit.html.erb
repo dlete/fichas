@@ -16,7 +16,7 @@
       <%= date.day %>
       <ul>
         <% for workday in workdays %>
-          <li><%= link_to h(workday.user.email), workday %></li>
+          <li><%= workday.user.email %></li>
         <% end %>
       </ul>
     <% end %>
