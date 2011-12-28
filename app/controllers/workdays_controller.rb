@@ -1,4 +1,47 @@
 class WorkdaysController < ApplicationController
+#####################
+  def popu
+    @aa = params[:pppp]
+    @bb = 'variable bb'
+    @cc = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
+    @dd = Date.parse(params[:pppp])
+    popu_all_month(@dd)
+    redirect_to workdays_path, :month => @dd.strftime("%Y-%m-$d")
+  end
+
+  def wipe
+    @aa = params[:pppp]
+    @bb = 'variable bb'
+    @cc = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
+    @dd = Date.parse(params[:pppp])
+    wipe_all_month(@dd)
+    redirect_to workdays_path
+  end
+
+def popu_all_month(dddd)
+  sd = dddd.beginning_of_month
+  ed = dddd.end_of_month
+  sd.upto(ed) do |n|
+    @workday = Workday.new
+    @workday.working_date = n
+    @workday.working_hours = "8"
+    @workday.user_id = current_user.id
+    @workday.save
+  end
+end
+
+def wipe_all_month(dddd)
+  sd = dddd.beginning_of_month
+  ed = dddd.end_of_month
+  @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month })
+  @dispose_of.each do |d|
+    d.destroy
+  end
+end
+
+
+#####################
+
   # GET /workdays
   # GET /workdays.json
   def index
@@ -16,6 +59,7 @@ class WorkdaysController < ApplicationController
   # GET /workdays/1.json
   def show
     @workday = Workday.find(params[:id])
+    @dd = params[:d_gui] ? Date.parse(params[:d_gui]) : Date.today
 
     respond_to do |format|
       format.html # show.html.erb
@@ -83,4 +127,5 @@ class WorkdaysController < ApplicationController
       format.json { head :ok }
     end
   end
+
 end

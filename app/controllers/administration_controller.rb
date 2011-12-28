@@ -9,7 +9,6 @@ class AdministrationController < ApplicationController
     redirect_to workdays_path
   end
 
-
 def populate_all_month
   sd = Date.today.beginning_of_month
   ed = Date.today.end_of_month
@@ -22,6 +21,7 @@ def populate_all_month
     @workday.save
   end
 end
+
 
 def delete_all_month
   sd = Date.today.beginning_of_month
