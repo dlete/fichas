@@ -1,6 +1,11 @@
 <h1>Listing workdays</h1>
 
 <h3> <%= current_user.email %> </h3>
+<h3> <%= @date.strftime("%A, %d %B %Y") %></h3>
+<h4><%= link_to 'POPULATE', :controller => 'workdays', :action => 'popu', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
+<h4><%= link_to 'WIPE', :controller => 'workdays', :action => 'wipe', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
+
+
 
 <div id="calendar">  
   <h2 id="month">  
@@ -15,16 +20,19 @@
       <%= date.day %>  
       <ul>  
         <% for workday in workdays %>  
-          <li><%= link_to h(workday.user.email), workday %></li>  
+          <% if (workday.submission_id.nil?) %>
+            <li><%= link_to h(workday.user.email), workday %></li>
+          <% else %>
+            <li><%= workday.user.email %></li>
+          <% end %>
         <% end %>  
       </ul> 
     <% end %>  
   <% end %>  
 </div>  
-
-
 <br />
 
 <%= link_to 'New Workday', new_workday_path %>
-<%= link_to 'Populate', :controller=>"administration", :action=>"populate" %>
-<%= link_to 'Wipe', :controller=>"administration", :action=>"wipe" %>
+<%= link_to 'Populate', :controller => "administration", :action => "populate" %>
+<%= link_to 'Wipe', :controller => "administration", :action => "wipe" %>
+<%= link_to 'Submit for approval', new_submission_path %>

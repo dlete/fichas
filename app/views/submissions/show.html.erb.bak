@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Submitter:</b>
+  <%= @submission.submitter_id %>
+</p>
+
+<p>
+  <b>Approver:</b>
+  <%= @submission.approver_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>

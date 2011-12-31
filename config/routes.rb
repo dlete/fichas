@@ -1,4 +1,6 @@
 Fichas::Application.routes.draw do
+  resources :submissions
+
   resources :departments
 
   get "logout" => "sessions#destroy", :as => "logout"
@@ -15,7 +17,12 @@ Fichas::Application.routes.draw do
 
   get "administration/populate"
 
-  resources :workdays
+  resources :workdays do
+    collection do
+      get 'popu'
+      get 'wipe'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
