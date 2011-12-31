@@ -22,11 +22,13 @@ def popu_all_month(dddd)
   sd = dddd.beginning_of_month
   ed = dddd.end_of_month
   sd.upto(ed) do |n|
-    @workday = Workday.new
-    @workday.working_date = n
-    @workday.working_hours = "8"
-    @workday.user_id = current_user.id
-    @workday.save
+    if (n+1).cwday <= 5
+      @workday = Workday.new
+      @workday.working_date = n
+      @workday.working_hours = "8"
+      @workday.user_id = current_user.id
+      @workday.save
+    end
   end
 end
 

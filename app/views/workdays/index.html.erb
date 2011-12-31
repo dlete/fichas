@@ -15,7 +15,7 @@
   </h2>
 
   <%= calendar_for @workdays, :year => @date.year, :month => @date.month do |calendar| %>  
-    <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+    <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
     <%= calendar.day(:day_method => :working_date) do |date, workdays| %>  
       <%= date.day %>  
       <ul>  
