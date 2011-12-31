@@ -6,7 +6,7 @@ class WorkdaysController < ApplicationController
     @cc = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
     @dd = Date.parse(params[:pppp])
     popu_all_month(@dd)
-    redirect_to workdays_path, :month => @dd.strftime("%Y-%m-$d")
+    redirect_to workdays_path 
   end
 
   def wipe
