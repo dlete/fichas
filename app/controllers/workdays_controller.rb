@@ -35,7 +35,7 @@ end
 def wipe_all_month(dddd)
   sd = dddd.beginning_of_month
   ed = dddd.end_of_month
-  @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month })
+  @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month, :submission_id => nil })
   @dispose_of.each do |d|
     d.destroy
   end
