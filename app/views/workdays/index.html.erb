@@ -6,7 +6,7 @@
 <h4><%= link_to 'WIPE', :controller => 'workdays', :action => 'wipe', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
 
 <h4><%= link_to 'New Workday', new_workday_path %></h4>
-<h4><%= link_to 'Submit for approval', new_submission_path %></h4>
+<h4><%= link_to 'Submit for approval', new_submission_path(:pppp => @date.strftime("%A, %d %B %Y")) %></h4>
 
 
 <div id="calendar">  

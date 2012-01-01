@@ -15,6 +15,17 @@ def set_submitter
   end
 end
 
+def set_submitter2(date)
+  sd = date.beginning_of_month
+  ed = date.end_of_month
+  @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month })
+  for d in @workdays_to_set_submitter
+    d.submission_id = User.find(current_user.id).submissions.last.id
+    d.save
+  end
+end
+
+
   # GET /submissions
   # GET /submissions.json
   def index
@@ -47,9 +58,10 @@ end
     @submission = Submission.new
 
 # dlete
+@dd = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
 @submission.submitter_id = current_user.id
 @submission.save
-set_submitter
+set_submitter2(@dd)
 redirect_to workdays_path
 # dlete
 
