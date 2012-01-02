@@ -3,6 +3,11 @@ heroku create --stack cedar
 Creating floating-mist-3085... done, stack is cedar
 http://floating-mist-3085.herokuapp.com/ | git@heroku.com:floating-mist-3085.git
 
+renamed to fichas
+http://fichas.herokuapp.com/
+git@heroku.com:fichas.git
+
+
 ## To do ##
 *~~only one workday per day~~
 *~~do not populate, automatically, the weekends~~
