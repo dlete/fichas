@@ -25,6 +25,14 @@ def set_submitter2(date)
   end
 end
 
+def unset_submitter(submission)
+  @workdays_to_unset_submitter = submission.workdays
+  for d in @workdays_to_unset_submitter
+    d.submission_id = nil
+    d.save
+  end
+end
+
 
   # GET /submissions
   # GET /submissions.json
@@ -116,6 +124,7 @@ redirect_to workdays_path
   # DELETE /submissions/1.json
   def destroy
     @submission = Submission.find(params[:id])
+    unset_submitter(@submission)
     @submission.destroy
 
     respond_to do |format|
