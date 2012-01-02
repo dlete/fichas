@@ -11,6 +11,7 @@ http://fichas.herokuapp.com/ | `git@heroku.com:fichas.git`
 * ~~only one workday per day~~
 * ~~do not populate, automatically, the weekends~~
 * ~~allow to wipe, only if it has not been approved, if the submission_id is empty~~
+* single sign on, shibboleth?, pubcookie?
 * do not populate, automatically, bank holidays
 * once a workday is submitted, do not allow to resubmit
 * db schema for user/department/manager
@@ -21,3 +22,7 @@ http://fichas.herokuapp.com/ | `git@heroku.com:fichas.git`
 * send mail when approving to submitter
 * lighten up javascript files in application
 * reports, what submissions have been submitted, state, pending approval, approved, for user and approver
+* in submissions listing for approver, order users alphabetically
+* when showing submissions for approval to the approver, take to the month corresponding to that submission (now it takes you to the current month)
+* to approve submissions, take to the `show` action instead of `edit`
+* when not approving a submission, allow the approver to write a note, and the submitter to read that note (and send an email?)
