@@ -13,7 +13,8 @@
       <td><%= user.email %></td>
       <% @pending_approval_for_user = Submission.find(:all, :conditions => { :submitter_id => user.id, :approver_id => nil }) %>
       <% @pending_approval_for_user.each do |submission| %>
-      <td><%= link_to 'Pending approval', edit_submission_path(submission) %></td>
+      <% @submission_period = submission.workdays.first.working_date %>
+      <td><%= link_to 'Pending approval', edit_submission_path(submission, :month => @submission_period.strftime("%A, %d %B %Y")) %></td>
       <% end %>
   </tr>
   <% end %>
