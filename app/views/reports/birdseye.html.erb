@@ -1,0 +1,37 @@
+<h1>Reports#birdseye</h1>
+<p>Find me in app/views/reports/birdseye.html.erb</p>
+
+<div id="calendar">
+<table>
+
+  <tr>
+    <% @months.each do |month| %>
+      <th><%= month %></th>
+    <% end %>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <% @months.compact.each_index do |month| %>
+        <td><%= month+1 %></td>
+      <% end %>
+      
+    </tr>
+  <% end %>
+
+</table>
+</div>
+
+<br />
+
+<div id="calendar">
+<%= table_for(@users) do |t| %>
+  <%= t.head('', 'January', 'February', 'March') %>
+  <%= t.body do |user| %>
+    <%= t.r do %>
+      <%= t.d(h(user.email)) %>
+    <% end %>
+  <% end %>
+<% end %>
+</div>

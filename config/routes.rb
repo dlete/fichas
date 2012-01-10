@@ -1,4 +1,6 @@
 Fichas::Application.routes.draw do
+  get "reports/birdseye"
+
   resources :submissions
 
   resources :departments
