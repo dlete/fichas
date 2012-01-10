@@ -11,6 +11,8 @@ http://fichas.herokuapp.com/ | `git@heroku.com:fichas.git`
 * ~~only one workday per day~~
 * ~~do not populate, automatically, the weekends~~
 * ~~allow to wipe, only if it has not been approved, if the submission_id is empty~~
+* ability to delete individual days
+* workday, when editing, once edited redirect to index
 * single sign on, shibboleth?, pubcookie?
 * do not populate, automatically, bank holidays
 * once a workday is submitted, do not allow to resubmit

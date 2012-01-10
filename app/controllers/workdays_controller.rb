@@ -47,9 +47,11 @@ end
   # GET /workdays
   # GET /workdays.json
   def index
-    @workdays = Workday.all
-    @workdays = current_user.workdays
+#    @workdays = Workday.all
+#    @workdays = current_user.workdays
     @date = params[:month] ? Date.parse(params[:month]) : Date.today  
+    @workdays = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => @date.beginning_of_month..@date.end_of_month })
+    @workhours_month = @workdays.sum(&:working_hours)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,6 +1,7 @@
 <h1>Listing workdays</h1>
 
-<h3> <%= current_user.email %> </h3>
+<h3> <%= current_user.email %> </h3>  <h5>Hours for <%= h @date.strftime("%B %Y") %>: <%= @workhours_month %> </h3>
+
 <h3> <%= @date.strftime("%A, %d %B %Y") %></h3>
 <h4><%= link_to 'POPULATE', :controller => 'workdays', :action => 'popu', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
 <h4><%= link_to 'WIPE', :controller => 'workdays', :action => 'wipe', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
@@ -23,9 +24,9 @@
       <ul>  
         <% for workday in workdays %>  
           <% if (workday.submission_id.nil?) %>
-            <li><%= link_to h(workday.user.email), workday %></li>
+            <li><%= link_to h(workday.working_hours), workday %></li>
           <% else %>
-            <li><%= workday.user.email %></li>
+            <li><%= workday.working_hours %></li>
           <% end %>
         <% end %>  
       </ul> 
