@@ -13,8 +13,14 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= user.email %></td>
-      <% @months.compact.each_index do |month| %>
-        <td><%= month+1 %></td>
+      <% @months.compact.each do |month| %>
+        <% @my = Date.today.year.to_s + "-" + month %>
+        <% @dd = Date.parse(@my).end_of_month %>
+        <td>
+          <%= @dd %>
+          <br />
+          <%= user.email %>
+        </td> 
       <% end %>
       
     </tr>

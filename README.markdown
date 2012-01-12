@@ -6,6 +6,10 @@ http://floating-mist-3085.herokuapp.com/ | git@heroku.com:floating-mist-3085.git
 renamed to fichas
 http://fichas.herokuapp.com/ | `git@heroku.com:fichas.git`
 
+## scrap
+@my = Date.today.year.to_s + "-" + "January"
+@dd = Date.parse(@my).end_of_month
+Submission.find(:all, :conditions => { :submitter_id => 5, :period_end => @dd } )
 
 ## To do ##
 * ~~only one workday per day~~

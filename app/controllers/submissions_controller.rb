@@ -68,6 +68,7 @@ end
 # dlete
 @dd = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
 @submission.submitter_id = current_user.id
+@submission.period_end = @dd.end_of_month
 @submission.save
 set_submitter2(@dd)
 redirect_to workdays_path
