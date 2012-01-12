@@ -17,9 +17,7 @@
         <% @my = Date.today.year.to_s + "-" + month %>
         <% @dd = Date.parse(@my).end_of_month %>
         <td>
-          <%= @dd %>
-          <br />
-          <%= user.email %>
+          <%= submission_status(user.id, @dd) %>
         </td> 
       <% end %>
       
