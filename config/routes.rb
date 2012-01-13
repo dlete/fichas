@@ -1,4 +1,6 @@
 Fichas::Application.routes.draw do
+  resources :public_holidays
+
   get "reports/birdseye"
 
   resources :submissions
