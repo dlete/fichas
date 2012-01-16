@@ -23,11 +23,13 @@ def popu_all_month(dddd)
   ed = dddd.end_of_month
   sd.upto(ed) do |n|
     if (n+1).cwday <= 5
+      if PublicHoliday.find_by_day(n).nil?
       @workday = Workday.new
       @workday.working_date = n
       @workday.working_hours = "8"
       @workday.user_id = current_user.id
       @workday.save
+      end
     end
   end
 end

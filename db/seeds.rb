@@ -17,3 +17,9 @@ PublicHoliday.create(day: "2012-08-06", event: "First Monday of August")
 PublicHoliday.create(day: "2012-10-29", event: "Last Monday of October")
 PublicHoliday.create(day: "2012-12-25", event: "Christmas Day")
 PublicHoliday.create(day: "2012-12-26", event: "St. Stephen's Day")
+
+Department.delete_all
+Department.create(name: "d1")
+Department.create(name: "d2")
+Department.create(name: "d3")
+
