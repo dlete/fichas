@@ -71,6 +71,7 @@ end
 @submission.period_end = @dd.end_of_month
 @submission.save
 set_submitter2(@dd)
+MailSubmissions.notify_submission_new(current_user).deliver
 redirect_to workdays_path
 # dlete
 
