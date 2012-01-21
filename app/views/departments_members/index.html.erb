@@ -1,0 +1,27 @@
+<h1>Listing departments_members</h1>
+
+<table>
+  <tr>
+    <th>Department</th>
+    <th>Member</th>
+    <th>Administrative department</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @departments_members.each do |departments_member| %>
+  <tr>
+    <td><%= departments_member.department.name %></td>
+    <td><%= departments_member.user.email %></td>
+    <td><%= departments_member.administrative_department %></td>
+    <td><%= link_to 'Show', departments_member %></td>
+    <td><%= link_to 'Edit', edit_departments_member_path(departments_member) %></td>
+    <td><%= link_to 'Destroy', departments_member, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Departments member', new_departments_member_path %>

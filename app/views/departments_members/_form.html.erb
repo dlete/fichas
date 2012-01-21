@@ -1,0 +1,33 @@
+<%= form_for(@departments_member) do |f| %>
+  <% if @departments_member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@departments_member.errors.count, "error") %> prohibited this departments_member from being saved:</h2>
+
+      <ul>
+      <% @departments_member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :department %><br />
+    <%= f.collection_select :department_id, @departments,
+                            :id, :name,
+                            :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :member %><br />
+    <%= f.collection_select :user_id, @users,
+                            :id, :email,
+                            :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :administrative_department %><br />
+    <%= f.check_box :administrative_department %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
