@@ -23,11 +23,5 @@
     <%= f.label :password_confirmation %>  
     <%= f.password_field :password_confirmation %>  
   </div>  
-  <div class="field">
-    <%= f.label :department %><br />
-    <%= f.collection_select :department_id, @departments,
-                            :id, :name,
-                            :include_blank => true %>
-  </div>
   <div class="actions"><%= f.submit %></div>  
 <% end %> 
