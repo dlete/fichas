@@ -5,16 +5,6 @@
   <%= @department.name %>
 </p>
 
-<p>
-  <b>Manager:</b>
-  <%= @department.manager.email %>
-</p>
-
-<p>
-  <b>Deputy:</b>
-  <%= @department.deputy.email %>
-</p>
-
 
 <%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>

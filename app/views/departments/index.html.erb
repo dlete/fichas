@@ -3,8 +3,6 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Manager</th>
-    <th>Deputy</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +11,6 @@
 <% @departments.each do |department| %>
   <tr>
     <td><%= department.name %></td>
-    <td><%= department.manager.email %></td>
-    <td><%= department.deputy.email %></td>
     <td><%= link_to 'Show', department %></td>
     <td><%= link_to 'Edit', edit_department_path(department) %></td>
     <td><%= link_to 'Destroy', department, confirm: 'Are you sure?', method: :delete %></td>
