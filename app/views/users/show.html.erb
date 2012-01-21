@@ -5,6 +5,11 @@
   <%= @user.email %>
 </p>
 
+<p>
+<%= render :partial => "departments_member",
+           :locals => { :user => @user } %>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

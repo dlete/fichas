@@ -5,6 +5,17 @@
   <%= @department.name %>
 </p>
 
+<p>
+<%= render :partial => "department_managers",
+           :locals => { :department => @department } %>
+</p>
+<br />
 
+<p>
+<%= render :partial => "department_members",
+           :locals => { :department => @department } %>
+</p>
+
+<br />
 <%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>
