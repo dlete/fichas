@@ -1,14 +1,34 @@
-<h1>Listing workdays</h1>
+<table>
+  <tr>
+    <td>
+      <h4>Workdays for <%= current_user.email %></h4>
+    </td>
+    <td>
+      <h4>On <%= @date.strftime("%A, %d %B %Y") %>, hours for <%= h @date.strftime("%B %Y") %>: <%= @workhours_month %> </h4>
+    </td>
+  </tr>
+</table>
 
-<h3> <%= current_user.email %> </h3>  <h5>Hours for <%= h @date.strftime("%B %Y") %>: <%= @workhours_month %> </h3>
 
-<h3> <%= @date.strftime("%A, %d %B %Y") %></h3>
-<h4> <%= link_to 'Submissions', submissions_path %> </h4>
-<h4><%= link_to 'POPULATE', :controller => 'workdays', :action => 'popu', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
-<h4><%= link_to 'WIPE', :controller => 'workdays', :action => 'wipe', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
-
-<h4><%= link_to 'New Workday', new_workday_path %></h4>
-<h4><%= link_to 'Submit for approval', new_submission_path(:pppp => @date.strftime("%A, %d %B %Y")) %></h4>
+<table>
+  <tr>
+    <td>
+      <h4><%= link_to 'New Workday', new_workday_path %></h4>
+    </td>
+    <td>
+      <h4><%= button_to 'Populate', :controller => 'workdays', :action => 'popu', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
+    </td>
+    <td>
+      <h4><%= button_to 'Wipe', :controller => 'workdays', :action => 'wipe', :pppp => @date.strftime("%A, %d %B %Y") %></h4>
+    </td>
+    <td>
+      <h4><%= button_to 'Submit for approval', new_submission_path(:pppp => @date.strftime("%A, %d %B %Y")), :method => :get %></h4>
+    </td>
+    <td>
+      <h4> <%= link_to 'Submissions', submissions_path %> </h4>
+    </td>
+  </tr>
+</table>
 
 
 <div id="calendar">  
@@ -34,9 +54,3 @@
     <% end %>  
   <% end %>  
 </div>  
-<br />
-
-<%= link_to 'New Workday', new_workday_path %>
-<%= link_to 'Populate', :controller => "administration", :action => "populate" %>
-<%= link_to 'Wipe', :controller => "administration", :action => "wipe" %>
-<%= link_to 'Submit for approval', new_submission_path %>

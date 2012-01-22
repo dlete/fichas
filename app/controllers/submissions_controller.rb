@@ -37,7 +37,7 @@ end
   # GET /submissions
   # GET /submissions.json
   def index
-    @departments_managed_by_user = current_user.manager
+    @departments_managed_by_user = current_user.departments_managed
     @submissions = Submission.all
 
     respond_to do |format|
@@ -51,7 +51,7 @@ end
   def show
     @submission = Submission.find(params[:id])
     @workdays = @submission.submitter.workdays
-@date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,15 +65,15 @@ end
     load_auxiliary_data
     @submission = Submission.new
 
-# dlete
-@dd = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
-@submission.submitter_id = current_user.id
-@submission.period_end = @dd.end_of_month
-@submission.save
-set_submitter2(@dd)
-MailSubmissions.notify_submission_new(current_user).deliver
-redirect_to workdays_path
-# dlete
+    # dlete
+    @dd = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
+    @submission.submitter_id = current_user.id
+    @submission.period_end = @dd.end_of_month
+    @submission.save
+    set_submitter2(@dd)
+    MailSubmissions.notify_submission_new(current_user).deliver
+    redirect_to workdays_path
+    # dlete
 
 #    respond_to do |format|
 #      format.html # new.html.erb
@@ -84,9 +84,9 @@ redirect_to workdays_path
   # GET /submissions/1/edit
   def edit
     load_auxiliary_data
-@date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
     @submission = Submission.find(params[:id])
-@workdays = @submission.submitter.workdays
+    @workdays = @submission.submitter.workdays
   end
 
   # POST /submissions

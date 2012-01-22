@@ -27,8 +27,8 @@ Fichas::Application.routes.draw do
 
   resources :workdays do
     collection do
-      get 'popu'
-      get 'wipe'
+      post 'popu'
+      post 'wipe'
     end
   end
 
