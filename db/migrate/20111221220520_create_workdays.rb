@@ -4,7 +4,7 @@ class CreateWorkdays < ActiveRecord::Migration
       t.date :working_date
       t.decimal :working_hours
       t.references :user
-      t.references :submission_id 
+      t.references :submission
 
       t.timestamps
     end

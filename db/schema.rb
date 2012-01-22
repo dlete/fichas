@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20120121212754) do
     t.date     "working_date"
     t.decimal  "working_hours"
     t.integer  "user_id"
-    t.integer  "submission_id_id"
+    t.integer  "submission_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
