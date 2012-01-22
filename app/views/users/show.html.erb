@@ -6,6 +6,41 @@
 </p>
 
 <p>
+  <b>Administrative manager:</b>
+  <% @administrative_manager_official = DepartmentsManager.find( 
+    :all,
+    :conditions => {
+      :deputy => false, 
+      :department_id => User.find(@user.id).departments_members(
+        :conditions => {
+          :administrative_department => true 
+        } 
+      ).first.department_id 
+    } 
+  ).first.user
+  %>
+  <%= @administrative_manager_official.email %>
+</p>
+
+<p>
+  <b>Administrative manager, deputy:</b>
+  <% @administrative_manager_deputy = DepartmentsManager.find(
+    :all,
+    :conditions => {
+      :deputy => true,
+      :department_id => User.find(@user.id).departments_members(
+        :conditions => {
+          :administrative_department => true
+        }
+      ).first.department_id
+    }
+  ).first.user
+  %>
+  <%= @administrative_manager_deputy.email %>
+</p>
+
+
+<p>
 <%= render :partial => "departments_member",
            :locals => { :user => @user } %>
 </p>
