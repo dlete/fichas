@@ -1,0 +1,30 @@
+<% @user_departments = user.departments %>
+
+<% @user_departments.each do |user_department| %>
+  <% @departments_managers = user_department.departments_managers %>
+
+<table>
+  <tr>
+    <th>Department</th>
+    <th>Manager</th>
+    <th>Deputy</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @departments_managers.each do |departments_manager| %>
+  <tr>
+    <td><%= departments_manager.department.name %></td>
+    <td><%= departments_manager.user.email %></td>
+    <td><%= departments_manager.deputy %></td>
+    <td><%= link_to 'Show', departments_manager %></td>
+    <td><%= link_to 'Edit', edit_departments_manager_path(departments_manager) %></td>
+    <td><%= link_to 'Destroy', departments_manager, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'New Departments manager', new_departments_manager_path %>
+
+<% end %>
