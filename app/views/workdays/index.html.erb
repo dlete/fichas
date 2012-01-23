@@ -33,9 +33,9 @@
 
 <div id="calendar">  
   <h2 id="month">  
-    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>  
+    <%= link_to "<", :date_in_gui => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>  
     <%= h @date.strftime("%B %Y") %>  
-    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-01") %>  
+    <%= link_to ">", :date_in_gui => (@date.end_of_month+1).strftime("%Y-%m-01") %>  
   </h2>
 
   <%= calendar_for @workdays, :year => @date.year, :month => @date.month do |calendar| %>  

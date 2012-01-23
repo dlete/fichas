@@ -51,7 +51,7 @@ end
   def index
 #    @workdays = Workday.all
 #    @workdays = current_user.workdays
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today  
+    @date = params[:date_in_gui] ? Date.parse(params[:date_in_gui]) : Date.today  
     @workdays = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => @date.beginning_of_month..@date.end_of_month })
     @workhours_month = @workdays.sum(&:working_hours)
 
@@ -97,13 +97,23 @@ end
 
     respond_to do |format|
       if @workday.save
-        format.html { redirect_to @workday, notice: 'Workday was successfully created.' }
+        format.html { redirect_to workdays_path(:date_in_gui => @workday.working_date.strftime("%Y-%m-01")) }
         format.json { render json: @workday, status: :created, location: @workday }
       else
         format.html { render action: "new" }
         format.json { render json: @workday.errors, status: :unprocessable_entity }
       end
     end
+
+#    respond_to do |format|
+#      if @workday.save
+#        format.html { redirect_to @workday, notice: 'Workday was successfully created.' }
+#        format.json { render json: @workday, status: :created, location: @workday }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @workday.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /workdays/1
@@ -126,12 +136,18 @@ end
   # DELETE /workdays/1.json
   def destroy
     @workday = Workday.find(params[:id])
+    @date_in_gui = @workday.working_date
     @workday.destroy
 
     respond_to do |format|
-      format.html { redirect_to workdays_url }
+      format.html { redirect_to workdays_url(:date_in_gui => @date_in_gui.strftime("%Y-%m-01")) }
       format.json { head :ok }
     end
+
+#    respond_to do |format|
+#      format.html { redirect_to workdays_url }
+#      format.json { head :ok }
+#    end
   end
 
 end
