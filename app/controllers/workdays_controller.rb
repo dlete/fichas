@@ -1,47 +1,41 @@
 class WorkdaysController < ApplicationController
 #####################
   def popu
-    @aa = params[:pppp]
-    @bb = 'variable bb'
-    @cc = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
-    @dd = Date.parse(params[:pppp])
-    popu_all_month(@dd)
-    redirect_to workdays_path(:month => @dd.strftime("%A, %d %B %Y"))
+    @date = Date.parse(params[:date_in_gui])
+    popu_all_month(@date)
+    redirect_to workdays_path(:date_in_gui => @date.strftime("%Y-%m-01"))
   end
 
   def wipe
-    @aa = params[:pppp]
-    @bb = 'variable bb'
-    @cc = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
-    @dd = Date.parse(params[:pppp])
-    wipe_all_month(@dd)
-    redirect_to workdays_path(:month => @dd.strftime("%A, %d %B %Y"))
+    @date = Date.parse(params[:date_in_gui])
+    wipe_all_month(@date)
+    redirect_to workdays_path(:date_in_gui => @date.strftime("%Y-%m-01"))
   end
 
-def popu_all_month(dddd)
-  sd = dddd.beginning_of_month
-  ed = dddd.end_of_month
-  sd.upto(ed) do |n|
-    if (n+1).cwday <= 5
-      if PublicHoliday.find_by_day(n).nil?
-      @workday = Workday.new
-      @workday.working_date = n
-      @workday.working_hours = "8"
-      @workday.user_id = current_user.id
-      @workday.save
+  def popu_all_month(date)
+    sd = date.beginning_of_month
+    ed = date.end_of_month
+    sd.upto(ed) do |n|
+      if (n+1).cwday <= 5
+        if PublicHoliday.find_by_day(n).nil?
+          @workday = Workday.new
+          @workday.working_date = n
+          @workday.working_hours = "8"
+          @workday.user_id = current_user.id
+          @workday.save
+        end
       end
     end
   end
-end
 
-def wipe_all_month(dddd)
-  sd = dddd.beginning_of_month
-  ed = dddd.end_of_month
-  @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month, :submission_id => nil })
-  @dispose_of.each do |d|
-    d.destroy
+  def wipe_all_month(date)
+    sd = date.beginning_of_month
+    ed = date.end_of_month
+    @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month, :submission_id => nil })
+    @dispose_of.each do |d|
+      d.destroy
+    end
   end
-end
 
 
 #####################
