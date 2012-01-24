@@ -93,16 +93,17 @@ class SubmissionsController < ApplicationController
   def update
     @submission = Submission.find(params[:id])
     @submission.approver_id = current_user.id
+    redirect_to submissions_path
 
-    respond_to do |format|
-      if @submission.update_attributes(params[:submission])
-        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
-      end
-    end
+#    respond_to do |format|
+#      if @submission.update_attributes(params[:submission])
+#        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
+#        format.json { head :ok }
+#      else
+#        format.html { render action: "edit" }
+#        format.json { render json: @submission.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # DELETE /submissions/1
@@ -111,11 +112,12 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     unset_submitter(@submission)
     @submission.destroy
+    redirect_to submissions_path
 
-    respond_to do |format|
-      format.html { redirect_to submissions_url }
-      format.json { head :ok }
-    end
+#    respond_to do |format|
+#      format.html { redirect_to submissions_url }
+#      format.json { head :ok }
+#    end
   end
 
   private

@@ -8,13 +8,13 @@ Fichas::Application.routes.draw do
   get "reports/birdseye"
 
   resources :submissions
+#  put "accept/:id" => "submissions#update", :as => "accept_submission"
 
   resources :departments
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
-#  root :to => "users#new"
   root :to => "sessions#new"
 
   resources :sessions

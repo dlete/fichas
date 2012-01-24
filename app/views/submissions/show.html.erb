@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+
+<%= form_for(@submission) do |f| %>
+    <%= f.submit %>
+<% end %>
+<td><%= button_to 'Reject', @submission, method: :delete %></td>
 
 <div id="calendar">
   <h2 id="month">  
@@ -11,12 +15,11 @@
       <%= date.day %>
       <ul>
         <% for workday in workdays %>
-          <li><%= link_to h(workday.user.email), workday %></li>
+          <li><%= workday.user.email %></li>
         <% end %>
       </ul>
     <% end %>
   <% end %>
 </div>
 
-<%= link_to 'Edit', edit_submission_path(@submission) %> |
-<%= link_to 'Back', submissions_path %>
+<%= link_to 'Go to Submissions', submissions_path %>
