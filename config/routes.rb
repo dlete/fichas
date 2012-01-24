@@ -21,10 +21,6 @@ Fichas::Application.routes.draw do
 
   resources :users
 
-  get "administration/wipe"
-
-  get "administration/populate"
-
   resources :workdays do
     collection do
       post 'populate'
