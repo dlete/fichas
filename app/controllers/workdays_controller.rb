@@ -1,21 +1,19 @@
 class WorkdaysController < ApplicationController
-#####################
-  def popu
+
+  def populate
     @date = Date.parse(params[:date_in_gui])
-    popu_all_month(@date)
+    populate_range_of_dates(@date.beginning_of_month, @date.end_of_month)
     redirect_to workdays_path(:date_in_gui => @date.strftime("%Y-%m-01"))
   end
 
   def wipe
     @date = Date.parse(params[:date_in_gui])
-    wipe_all_month(@date)
+    wipe_range_of_dates(@date.beginning_of_month, @date.end_of_month)
     redirect_to workdays_path(:date_in_gui => @date.strftime("%Y-%m-01"))
   end
 
-  def popu_all_month(date)
-    sd = date.beginning_of_month
-    ed = date.end_of_month
-    sd.upto(ed) do |n|
+  def populate_range_of_dates(date_beginning, date_end)
+    date_beginning.upto(date_end) do |n|
       if (n+1).cwday <= 5
         if PublicHoliday.find_by_day(n).nil?
           @workday = Workday.new
@@ -28,17 +26,17 @@ class WorkdaysController < ApplicationController
     end
   end
 
-  def wipe_all_month(date)
-    sd = date.beginning_of_month
-    ed = date.end_of_month
-    @dispose_of = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month, :submission_id => nil })
+  def wipe_range_of_dates(date_beginning, date_end)
+    @dispose_of = Workday.find(:all, 
+                               :conditions => { :user_id => current_user.id, 
+                                                :working_date => date_beginning..date_end, 
+                                                :submission_id => nil 
+                                              }
+                              )
     @dispose_of.each do |d|
       d.destroy
     end
   end
-
-
-#####################
 
   # GET /workdays
   # GET /workdays.json

@@ -1,37 +1,37 @@
 class SubmissionsController < ApplicationController
 
-def submit_for_approval
-  set_submitter
-  redirect_to workdays_path
-end
-
-def set_submitter
-  sd = Date.today.beginning_of_month
-  ed = Date.today.end_of_month
-  @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => Date.today.beginning_of_month..Date.today.end_of_month })
-  for d in @workdays_to_set_submitter
-    d.submission_id = User.find(current_user.id).submissions.last.id
-    d.save 
+  def submit_for_approval
+    set_submitter
+    redirect_to workdays_path
   end
-end
 
-def set_submitter2(date)
-  sd = date.beginning_of_month
-  ed = date.end_of_month
-  @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month })
-  for d in @workdays_to_set_submitter
-    d.submission_id = User.find(current_user.id).submissions.last.id
-    d.save
+  def set_submitter
+    sd = Date.today.beginning_of_month
+    ed = Date.today.end_of_month
+    @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => Date.today.beginning_of_month..Date.today.end_of_month })
+    for d in @workdays_to_set_submitter
+      d.submission_id = User.find(current_user.id).submissions.last.id
+      d.save 
+    end
   end
-end
 
-def unset_submitter(submission)
-  @workdays_to_unset_submitter = submission.workdays
-  for d in @workdays_to_unset_submitter
-    d.submission_id = nil
-    d.save
+  def set_submitter2(date)
+    sd = date.beginning_of_month
+    ed = date.end_of_month
+    @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month })
+    for d in @workdays_to_set_submitter
+      d.submission_id = User.find(current_user.id).submissions.last.id
+      d.save
+    end
   end
-end
+
+  def unset_submitter(submission)
+    @workdays_to_unset_submitter = submission.workdays
+    for d in @workdays_to_unset_submitter
+      d.submission_id = nil
+      d.save
+    end
+  end
 
 
   # GET /submissions
@@ -66,12 +66,13 @@ end
     @submission = Submission.new
 
     # dlete
-    @dd = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
+#    @dd = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
+    @date = params[:date_in_gui] ? Date.parse(params[:date_in_gui]) : Date.today
     @submission.submitter_id = current_user.id
-    @submission.period_end = @dd.end_of_month
+    @submission.period_end = @date.end_of_month
     @submission.save
-    set_submitter2(@dd)
-    MailSubmissions.notify_submission_new(current_user).deliver
+    set_submitter2(@date)
+#    MailSubmissions.notify_submission_new(current_user).deliver
     redirect_to workdays_path
     # dlete
 

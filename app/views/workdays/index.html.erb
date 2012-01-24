@@ -16,13 +16,13 @@
       <h4><%= link_to 'New Workday', new_workday_path %></h4>
     </td>
     <td>
-      <h4><%= button_to 'Populate', :controller => 'workdays', :action => 'popu', :date_in_gui => @date.strftime("%Y-%m-01") %></h4>
+      <h4><%= button_to 'Populate', :controller => 'workdays', :action => 'populate', :date_in_gui => @date.strftime("%Y-%m-01") %></h4>
     </td>
     <td>
       <h4><%= button_to 'Wipe', :controller => 'workdays', :action => 'wipe', :date_in_gui => @date.strftime("%Y-%m-01") %></h4>
     </td>
     <td>
-      <h4><%= button_to 'Submit for approval', new_submission_path(:pppp => @date.strftime("%A, %d %B %Y")), :method => :get %></h4>
+      <h4><%= button_to 'Submit for approval', new_submission_path(:date_in_gui => @date.strftime("%Y-%m-01")), :method => :get %></h4>
     </td>
     <td>
       <h4> <%= link_to 'Submissions', submissions_path %> </h4>
