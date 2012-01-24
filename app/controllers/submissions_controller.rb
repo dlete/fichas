@@ -5,20 +5,8 @@ class SubmissionsController < ApplicationController
     redirect_to workdays_path
   end
 
-  def set_submitter
-    sd = Date.today.beginning_of_month
-    ed = Date.today.end_of_month
-    @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => Date.today.beginning_of_month..Date.today.end_of_month })
-    for d in @workdays_to_set_submitter
-      d.submission_id = User.find(current_user.id).submissions.last.id
-      d.save 
-    end
-  end
-
-  def set_submitter2(date)
-    sd = date.beginning_of_month
-    ed = date.end_of_month
-    @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => sd.beginning_of_month..ed.end_of_month })
+  def set_submitter_in_date_range(date_beginning, date_end)
+    @workdays_to_set_submitter = Workday.find(:all, :conditions => { :user_id => current_user.id, :working_date => date_beginning..date_end })
     for d in @workdays_to_set_submitter
       d.submission_id = User.find(current_user.id).submissions.last.id
       d.save
@@ -63,23 +51,17 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new.json
   def new
     load_auxiliary_data
-    @submission = Submission.new
-
-    # dlete
-#    @dd = params[:pppp] ? Date.parse(params[:pppp]) : Date.today
     @date = params[:date_in_gui] ? Date.parse(params[:date_in_gui]) : Date.today
+
+    @submission = Submission.new
     @submission.submitter_id = current_user.id
+    @submission.period_begin = @date.beginning_of_month
     @submission.period_end = @date.end_of_month
     @submission.save
-    set_submitter2(@date)
+    set_submitter_in_date_range(@date.beginning_of_month, @date.end_of_month)
+# uncomment to send emails
 #    MailSubmissions.notify_submission_new(current_user).deliver
     redirect_to workdays_path
-    # dlete
-
-#    respond_to do |format|
-#      format.html # new.html.erb
-#      format.json { render json: @submission }
-#    end
   end
 
   # GET /submissions/1/edit
