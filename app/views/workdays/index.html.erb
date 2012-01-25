@@ -22,7 +22,7 @@
       <h4><%= button_to 'Wipe', :controller => 'workdays', :action => 'wipe', :date_in_gui => @date.strftime("%Y-%m-01") %></h4>
     </td>
     <td>
-      <h4><%= link_to 'Submit for approval', new_submission_path(:date_in_gui => @date.strftime("%A, %d %B %Y")) %></h4>
+      <h4><%= button_to 'Submit for approval', submissions_path(:date_in_gui => @date.strftime("%Y-%m-01")) %></h4>
     </td>
     <td>
       <h4> <%= link_to 'Submissions', submissions_path %> </h4>

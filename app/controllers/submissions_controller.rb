@@ -39,7 +39,8 @@ class SubmissionsController < ApplicationController
   def show
     @submission = Submission.find(params[:id])
     @workdays = @submission.submitter.workdays
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+#    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @date = @submission.period_begin
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +62,7 @@ class SubmissionsController < ApplicationController
     set_submitter_in_date_range(@date.beginning_of_month, @date.end_of_month)
 # uncomment to send emails
 #    MailSubmissions.notify_submission_new(current_user).deliver
-    redirect_to workdays_path
+    redirect_to workdays_path(:date_in_gui => @date.strftime("%Y-%m-01"))
   end
 
   # GET /submissions/1/edit
@@ -75,17 +76,29 @@ class SubmissionsController < ApplicationController
   # POST /submissions
   # POST /submissions.json
   def create
-    @submission = Submission.new(params[:submission])
+    @date = params[:date_in_gui] ? Date.parse(params[:date_in_gui]) : Date.today
+    @submission = Submission.new
+    @submission.submitter_id = current_user.id
+    @submission.period_begin = @date.beginning_of_month
+    @submission.period_end = @date.end_of_month
+    @submission.save
+    set_submitter_in_date_range(@date.beginning_of_month, @date.end_of_month)
+# uncomment to send emails
+#    MailSubmissions.notify_submission_new(current_user).deliver
+    redirect_to workdays_path(:date_in_gui => @date.strftime("%Y-%m-01"))
 
-    respond_to do |format|
-      if @submission.save
-        format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
-        format.json { render json: @submission, status: :created, location: @submission }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
-      end
-    end
+# original
+#    @submission = Submission.new(params[:submission])
+#
+#    respond_to do |format|
+#      if @submission.save
+#        format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
+#        format.json { render json: @submission, status: :created, location: @submission }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @submission.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /submissions/1
