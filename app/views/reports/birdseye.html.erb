@@ -1,5 +1,4 @@
-<h1>Reports#birdseye</h1>
-<p>Find me in app/views/reports/birdseye.html.erb</p>
+<h1>Birdseye report</h1>
 
 <div id="calendar">
 <table>
@@ -15,9 +14,9 @@
       <td><%= user.email %></td>
       <% @months.compact.each do |month| %>
         <% @my = Date.today.year.to_s + "-" + month %>
-        <% @dd = Date.parse(@my).end_of_month %>
+        <% @dmy = Date.parse(@my).beginning_of_month %>
         <td>
-          <%= submission_status(user.id, @dd) %>
+          <%= submission_status(user.id, @dmy) %>
         </td> 
       <% end %>
       

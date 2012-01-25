@@ -1,7 +1,7 @@
 module ReportsHelper
 
   def submission_status(user_id, date)
-    @s = Submission.find(:first, :conditions => { :submitter_id => user_id, :period_end => date } )
+    @s = Submission.find(:first, :conditions => { :submitter_id => user_id, :period_begin => date } )
     if @s.nil?
       return "Not submitted"
     elsif @s.approver_id.nil?
