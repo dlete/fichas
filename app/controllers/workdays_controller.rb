@@ -115,13 +115,23 @@ class WorkdaysController < ApplicationController
 
     respond_to do |format|
       if @workday.update_attributes(params[:workday])
-        format.html { redirect_to @workday, notice: 'Workday was successfully updated.' }
+        format.html { redirect_to workdays_path(:date_in_gui => @workday.working_date.strftime("%Y-%m-01")) }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
         format.json { render json: @workday.errors, status: :unprocessable_entity }
       end
     end
+
+#    respond_to do |format|
+#      if @workday.update_attributes(params[:workday])
+#        format.html { redirect_to @workday, notice: 'Workday was successfully updated.' }
+#        format.json { head :ok }
+#      else
+#        format.html { render action: "edit" }
+#        format.json { render json: @workday.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # DELETE /workdays/1

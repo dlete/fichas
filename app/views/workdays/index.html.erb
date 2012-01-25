@@ -1,10 +1,7 @@
 <table>
   <tr>
     <td>
-      <h4>Workdays for <%= current_user.email %></h4>
-    </td>
-    <td>
-      <h4>On <%= @date.strftime("%A, %d %B %Y") %>, hours for <%= h @date.strftime("%B %Y") %>: <%= @workhours_month %> </h4>
+      <%= current_user.email %>, <b><%= @workhours_month %> workhours</b> reported for <b><%= h @date.strftime("%B %Y") %></b>, and are <b><%= submission_status(current_user.id, @date.beginning_of_month) %></b>
     </td>
   </tr>
 </table>
@@ -45,7 +42,7 @@
       <ul>  
         <% for workday in workdays %>  
           <% if (workday.submission_id.nil?) %>
-            <li><%= link_to h(workday.working_hours), workday %></li>
+            <li><%= link_to workday.working_hours, edit_workday_path(workday) %></li>
           <% else %>
             <li><%= workday.working_hours %></li>
           <% end %>

@@ -16,8 +16,15 @@ Submission.find(:all, :conditions => { :submitter_id => 5, :period_end => @dd } 
 * ~~do not populate, automatically, the weekends~~
 * ~~allow to wipe, only if it has not been approved, if the submission_id is empty~~
 * ~~ability to delete individual days~~
+* workday.working_hours can only have two decimals
+* workday index, click on hours takes directly to edit workday
 * workday, when editing, once edited redirect to index
+* new workday, when accepted goes to index, not to show that individual day
 * single sign on, shibboleth?, pubcookie?
+* user can be in more than one department
+* user can only be once in a department
+* user can be manager of more than one department
+* user can only be once manager of a given department
 * ~~do not populate, automatically, bank holidays~~
 * once a workday is submitted, do not allow to resubmit
 * db schema for user/department/manager
