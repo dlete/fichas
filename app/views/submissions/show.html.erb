@@ -1,8 +1,7 @@
 
-<%= form_for(@submission) do |f| %>
-    <%= f.submit %>
-<% end %>
-<td><%= button_to 'Reject', @submission, method: :delete %></td>
+<%= button_to 'Accept', submission_path(@submission), :method => :put %>
+<%= button_to 'Reject', @submission, method: :delete %> 
+
 
 <div id="calendar">
   <h2 id="month">  

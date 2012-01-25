@@ -15,7 +15,7 @@
       <% @pending_approval_for_user = Submission.find(:all, :conditions => { :submitter_id => user.id, :approver_id => nil }) %>
       <% @pending_approval_for_user.each do |submission| %>
       <% @submission_period = submission.workdays.first.working_date %>
-      <td><%= link_to 'Pending approval', edit_submission_path(submission, :month => @submission_period.strftime("%A, %d %B %Y")) %></td>
+      <td><%= link_to 'Pending approval', edit_submission_path(submission, :month => @submission_period.strftime("%Y-%m-01")) %></td>
       <% end %>
   </tr>
   <% end %>
@@ -39,7 +39,7 @@
     <td><%= submission.submitter.email %></td>
     <td><%= submission.period_begin %></td>
     <td><%= submission.period_end %></td>
-    <td><%= link_to 'Show', submission %></td>
+    <td><%= link_to 'Show', submission_path(submission, :month => @submission_period.strftime("%Y-%m-01")) %></td>
     <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
     <td><%= link_to 'Destroy', submission, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

@@ -93,6 +93,7 @@ class SubmissionsController < ApplicationController
   def update
     @submission = Submission.find(params[:id])
     @submission.approver_id = current_user.id
+    @submission.save
     redirect_to submissions_path
 
 #    respond_to do |format|
