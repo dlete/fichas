@@ -1,15 +1,8 @@
 ## Heroku ##
-heroku create --stack cedar
-Creating floating-mist-3085... done, stack is cedar
-http://floating-mist-3085.herokuapp.com/ | git@heroku.com:floating-mist-3085.git
-
-renamed to fichas
 http://fichas.herokuapp.com/ | `git@heroku.com:fichas.git`
 
-## scrap
-@my = Date.today.year.to_s + "-" + "January"
-@dd = Date.parse(@my).end_of_month
-Submission.find(:all, :conditions => { :submitter_id => 5, :period_end => @dd } )
+## jQuery UI
+http://railsforum.com/viewtopic.php?id=47494
 
 ## To do ##
 * ~~only one workday per day~~
