@@ -18,7 +18,7 @@ class WorkdaysController < ApplicationController
         if PublicHoliday.find_by_day(n).nil?
           @workday = Workday.new
           @workday.working_date = n
-          @workday.working_hours = "8"
+          @workday.working_hours = "7.5"
           @workday.user_id = current_user.id
           @workday.save
         end
