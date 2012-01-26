@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <td>
+      <h4><%= link_to 'New Workday', new_workday_path %></h4>
+    </td>
+    <td>
+      <h4><%= button_to 'Populate', :action => 'populate', :date_in_gui => @date.strftime("%Y-%m-01") %></h4>
+    </td>
+    <td>
+      <h4><%= button_to 'Wipe', :action => 'wipe', :date_in_gui => @date.strftime("%Y-%m-01") %></h4>
+    </td>
+    <td>
+      <h4><%= button_to 'Submit for approval', submissions_path(:date_in_gui => @date.strftime("%Y-%m-01")) %></h4>
+    </td>
+    <td>
+      <h4> <%= link_to 'Submissions', submissions_path %> </h4>
+    </td>
+  </tr>
+</table>

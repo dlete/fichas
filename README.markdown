@@ -4,6 +4,9 @@ http://fichas.herokuapp.com/ | `git@heroku.com:fichas.git`
 ## jQuery UI
 http://railsforum.com/viewtopic.php?id=47494
 
+## Thin
+bundle exec thin start
+
 ## To do ##
 * ~~only one workday per day~~
 * ~~do not populate, automatically, the weekends~~
