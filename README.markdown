@@ -12,6 +12,8 @@ http://railsforum.com/viewtopic.php?id=47494
 * workday.working_hours can only have two decimals
 * workday index, click on hours takes directly to edit workday
 * workday, when editing, once edited redirect to index
+* ~~ workday, when editing, give opportunity to delete ~~
+* change README to textile
 * new workday, when accepted goes to index, not to show that individual day
 * single sign on, shibboleth?, pubcookie?
 * user can be in more than one department
