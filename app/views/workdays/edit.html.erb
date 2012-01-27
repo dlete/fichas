@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'My workdays', workdays_path %> |
+<%= link_to 'My workdays', workdays_path(:date_in_gui => @workday.working_date.strftime("%Y-%m-01")) %> |
 <%= link_to 'Delete', workday_path, method: :delete %>
