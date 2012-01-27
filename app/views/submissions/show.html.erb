@@ -1,3 +1,4 @@
+<p>Submission for <b><%= @submission.submitter.email %></b> for the month of <%= h @date.strftime("%B %Y") %> for <b><%= workhours_in_submission(@submission) %> hours</b></p>
 
 <%= button_to 'Accept', submission_path(@submission), :method => :put %>
 <%= button_to 'Reject', @submission, method: :delete %> 
@@ -14,7 +15,7 @@
       <%= date.day %>
       <ul>
         <% for workday in workdays %>
-          <li><%= workday.user.email %></li>
+          <li><%= workday.working_hours %></li>
         <% end %>
       </ul>
     <% end %>
