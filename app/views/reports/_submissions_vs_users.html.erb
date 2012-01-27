@@ -1,0 +1,47 @@
+<h1>Birdseye partial report</h1>
+
+<div id="calendar">
+<table>
+  <tr>
+    <% @months.each do |month| %>
+      <th><%= month %></th>
+    <% end %>
+  </tr>
+
+    <tr>
+      <td><%= user.email %></td>
+      <% @months.compact.each do |month| %>
+        <% @my = Date.today.year.to_s + "-" + month %>
+        <% @dmy = Date.parse(@my).beginning_of_month %>
+        <td>
+          <%= submission_status(user.id, @dmy) %>
+        </td>
+      <% end %>
+
+    </tr>
+</table>
+</div>
+
+<br />
+
+<div id="calendar">
+<table>
+  <tr>
+    <% @months.each do |month| %>
+      <th><%= month %></th>
+    <% end %>
+  </tr>
+
+    <tr>
+      <td><%= user.email %></td>
+      <% @months.compact.each do |month| %>
+        <% @my = Date.today.year.to_s + "-" + month %>
+        <% @dmy = Date.parse(@my).beginning_of_month %>
+        <td>
+          <%= ah(user.id, @dmy) %>
+        </td>
+      <% end %>
+
+    </tr>
+</table>
+</div>

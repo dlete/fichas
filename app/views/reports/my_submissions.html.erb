@@ -1,0 +1,5 @@
+<% @user = current_user %>
+<%= @user.email %>
+
+<%= render :partial => "submissions_vs_users",
+           :locals => { :user => @user } %>

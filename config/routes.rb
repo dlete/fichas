@@ -6,6 +6,7 @@ Fichas::Application.routes.draw do
   resources :public_holidays
 
   get "reports/birdseye"
+  get "reports/my_submissions"
 
   resources :submissions
 #  put "accept/:id" => "submissions#update", :as => "accept_submission"
