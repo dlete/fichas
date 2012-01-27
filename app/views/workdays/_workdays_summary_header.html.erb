@@ -1,7 +1,0 @@
-<table>
-  <tr>
-    <td>
-      <%= current_user.email %>, <b><%= @workhours_month %> workhours</b> reported for <b><%= h @date.strftime("%B %Y") %></b>, and are <b><%= submission_status(current_user.id, @date.beginning_of_month) %></b>
-    </td>
-  </tr>
-</table>
