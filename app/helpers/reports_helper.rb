@@ -64,7 +64,6 @@ module ReportsHelper
     weeks_in_period = ((date - date.months_ago(4))/7).to_i
     workhours_in_period = workhours_months.sum
     average_workhours_week = (workhours_in_period / weeks_in_period.to_i).round(2)
-    puts average_workhours_week
     return average_workhours_week
   end
 
