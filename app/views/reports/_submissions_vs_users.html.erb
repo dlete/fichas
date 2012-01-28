@@ -1,5 +1,11 @@
 <h1>Birdseye partial report</h1>
 
+  <h2 id="month">  
+    <%= link_to "<", :date_in_gui => (@date.beginning_of_year-1).strftime("%Y-%m-01") %>  
+    <%= h @date.strftime("%Y") %>  
+    <%= link_to ">", :date_in_gui => (@date.end_of_year+1).strftime("%Y-%m-01") %>  
+  </h2>
+
 <div id="calendar">
 <table>
   <tr>
@@ -11,7 +17,7 @@
     <tr>
       <td><%= user.email %></td>
       <% @months.compact.each do |month| %>
-        <% @my = Date.today.year.to_s + "-" + month %>
+        <% @my = @date.year.to_s + "-" + month + "-01" %>
         <% @dmy = Date.parse(@my).beginning_of_month %>
         <td>
           <% if @dmy > Date.today %>
