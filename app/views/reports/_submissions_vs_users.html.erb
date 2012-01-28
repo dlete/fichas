@@ -14,31 +14,19 @@
         <% @my = Date.today.year.to_s + "-" + month %>
         <% @dmy = Date.parse(@my).beginning_of_month %>
         <td>
-          <%= submission_status(user.id, @dmy) %>
-        </td>
-      <% end %>
+          <% if @dmy > Date.today %>
+          <%else %>
+          <% @sdu = submission_date_user(user.id, @dmy) %>
+          <% @ss = submission_status2(@sdu) %>
+          <% @sh = submission_hours2(@sdu) %>
+          <% @ahm = ah(user.id, @dmy) %>
 
-    </tr>
-</table>
-</div>
-
-<br />
-
-<div id="calendar">
-<table>
-  <tr>
-    <% @months.each do |month| %>
-      <th><%= month %></th>
-    <% end %>
-  </tr>
-
-    <tr>
-      <td><%= user.email %></td>
-      <% @months.compact.each do |month| %>
-        <% @my = Date.today.year.to_s + "-" + month %>
-        <% @dmy = Date.parse(@my).beginning_of_month %>
-        <td>
-          <%= ah(user.id, @dmy) %>
+          <%= @ss %>
+          <br />
+          wh/month: <%= @sh %>
+          <br />
+          Avg wh/week: <%= @ahm %> 
+          <% end %>
         </td>
       <% end %>
 
