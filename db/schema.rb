@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124165529) do
+ActiveRecord::Schema.define(:version => 20120121212754) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(:version => 20120124165529) do
   create_table "submissions", :force => true do |t|
     t.integer  "submitter_id"
     t.integer  "approver_id"
+    t.date     "period_begin"
     t.date     "period_end"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "period_begin"
   end
 
   create_table "users", :force => true do |t|
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20120124165529) do
 
   create_table "workdays", :force => true do |t|
     t.date     "working_date"
-    t.decimal  "working_hours"
+    t.decimal  "working_hours", :precision => 4, :scale => 2
     t.integer  "user_id"
     t.integer  "submission_id"
     t.datetime "created_at"
