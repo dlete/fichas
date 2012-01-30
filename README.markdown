@@ -8,8 +8,8 @@
 * ~~workday index, click on hours takes directly to edit workday~~
 * ~~workday, when editing, once edited redirect to index~~
 * ~~workday, when editing, give opportunity to delete~~
-* change README to textile
-* jQuery DatePicker, week starts on Monday
+* ~~change README to markdown or textile~~
+* ~~jQuery DatePicker, week starts on Monday~~
 * jQuery DatePicket, load month from with it was called? If called from Oct, then DatePicker shows Oct, not the current month
 * ~~new workday, when accepted goes to index, not to show that individual day~~
 * single sign on, shibboleth?, pubcookie?
@@ -22,19 +22,19 @@
 * ~~do not populate, automatically, bank holidays~~
 * once a workday is submitted, do not allow to resubmit
 * db schema for user/department/manager
-* once populated, redirect to the month you were in the calendar, for all in one go
-* once populated, redirect to the month you were in the calendar, for one by one workday
-* show status of a submission pending/rejected
+* ~~once populated, redirect to the month you were in the calendar, for all in one go~~
+* ~~once populated, redirect to the month you were in the calendar, for one by one workday~~
+* ~~show status of a submission pending/rejected~~ (/reports/birdseye)
 * send mail when submitting to approver
 * send mail when approving to submitter
 * lighten up javascript files in application
-* reports, what submissions have been submitted, state, pending approval, approved, for user and approver
+* ~~reports, what submissions have been submitted, state, pending approval, approved, for user and approver~~
 * in submissions listing for approver, order users alphabetically
-* when showing submissions for approval to the approver, take to the month corresponding to that submission (now it takes you to the current month)
-* to approve submissions, take to the `show` action instead of `edit`
+* ~~when showing submissions for approval to the approver, take to the month corresponding to that submission (now it takes you to the current month)~~
+* ~~to approve submissions, take to the `show` action instead of `edit`~~
 * when not approving a submission, allow the approver to write a note, and the submitter to read that note (and send an email?)
 * ~~manager has link to submissions~~
-* submitter sees state of his/her own submissions
+* ~~submitter sees state of his/her own submissions~~ (/reports/my_submissions)
 * manager sees state of his/her and his/her group(s)
 * in submission acceptance/reject, once manager does either the browser returns to the month accepted/rejected
 * once staff submits, manager receives email, staff cc
