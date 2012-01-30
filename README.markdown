@@ -1,5 +1,5 @@
 
-# To do
+## To do
 * ~~only one workday per day~~
 * ~~do not populate, automatically, the weekends~~
 * ~~allow to wipe, only if it has not been approved, if the submission_id is empty~~
@@ -47,7 +47,9 @@
 * record reminders
 * graph with hours per month (individual/group/all)
 * with java? before submitting, ability to easily delete individual workdays. hover and x appear that if clicked then deletes?
-* before submitting, ability to edit insitu
+* before submitting, ability to edit insitu (http://railscasts.com/episodes/302-in-place-editing)
+### Reports
+* ability to produce pdf
 
 ## Heroku
 http://fichas.herokuapp.com/ | `git@heroku.com:fichas.git`
