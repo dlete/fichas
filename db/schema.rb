@@ -38,9 +38,6 @@ ActiveRecord::Schema.define(:version => 20120121212754) do
     t.datetime "updated_at"
   end
 
-  add_index "departments_members", ["department_id"], :name => "index_departments_members_on_department_id"
-  add_index "departments_members", ["user_id"], :name => "index_departments_members_on_user_id"
-
   create_table "public_holidays", :force => true do |t|
     t.date     "day"
     t.string   "event"

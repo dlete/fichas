@@ -13,11 +13,12 @@
 * jQuery DatePicket, load month from with it was called? If called from Oct, then DatePicker shows Oct, not the current month
 * ~~new workday, when accepted goes to index, not to show that individual day~~
 * single sign on, shibboleth?, pubcookie?
-* user can be in more than one department
-* user can only be once in a department
-* user can only have one administrative_department
-* user can be manager of more than one department
-* user can only be once manager of a given department
+* ~~user can be in more than one department~~
+* ~~user can only be once in a department~~
+* ~~user can only have one administrative_department~~
+* ~~user can be manager of more than one department~~
+* ~~user can only be once manager of a given department~~
+* ~~a given department can only have one designated manager and one deputy manager~~
 * department, allow to select more than one user in one go as members
 * ~~do not populate, automatically, bank holidays~~
 * once a workday is submitted, do not allow to resubmit

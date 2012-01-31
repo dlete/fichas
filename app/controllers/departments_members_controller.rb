@@ -42,6 +42,7 @@ class DepartmentsMembersController < ApplicationController
   # POST /departments_members
   # POST /departments_members.json
   def create
+    load_auxiliary_data
     @departments_member = DepartmentsMember.new(params[:departments_member])
 
     respond_to do |format|
@@ -58,6 +59,7 @@ class DepartmentsMembersController < ApplicationController
   # PUT /departments_members/1
   # PUT /departments_members/1.json
   def update
+    load_auxiliary_data
     @departments_member = DepartmentsMember.find(params[:id])
 
     respond_to do |format|

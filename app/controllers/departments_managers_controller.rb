@@ -42,6 +42,7 @@ class DepartmentsManagersController < ApplicationController
   # POST /departments_managers
   # POST /departments_managers.json
   def create
+    load_auxiliary_data
     @departments_manager = DepartmentsManager.new(params[:departments_manager])
 
     respond_to do |format|
@@ -58,6 +59,7 @@ class DepartmentsManagersController < ApplicationController
   # PUT /departments_managers/1
   # PUT /departments_managers/1.json
   def update
+    load_auxiliary_data
     @departments_manager = DepartmentsManager.find(params[:id])
 
     respond_to do |format|
