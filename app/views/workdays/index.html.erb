@@ -15,7 +15,7 @@
       <ul>  
         <% for workday in workdays %>  
           <% if (workday.submission_id.nil?) %>
-            <li><%= link_to workday.working_hours, edit_workday_path(workday) %></li>
+            <li><u><%= best_in_place workday, :working_hours %></u></li>
           <% else %>
             <li><%= workday.working_hours %></li>
           <% end %>
