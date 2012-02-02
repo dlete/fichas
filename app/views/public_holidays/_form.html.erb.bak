@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :day %><br />
-    <%= f.text_field :day %>
+    <%= f.date_select :day %>
   </div>
   <div class="field">
     <%= f.label :event %><br />

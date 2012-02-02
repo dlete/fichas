@@ -14,7 +14,7 @@ class WorkdaysController < ApplicationController
 
   def populate_range_of_dates(date_beginning, date_end)
     date_beginning.upto(date_end) do |n|
-      if (n+1).cwday <= 5
+      if (n).cwday <= 5
         if PublicHoliday.find_by_day(n).nil?
           @workday = Workday.new
           @workday.working_date = n
