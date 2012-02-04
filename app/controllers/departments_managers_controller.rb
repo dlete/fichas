@@ -26,6 +26,8 @@ class DepartmentsManagersController < ApplicationController
   def new
     load_auxiliary_data
     @departments_manager = DepartmentsManager.new
+    @blah = params[:department_id]
+    @departments_manager.department_id = @blah
 
     respond_to do |format|
       format.html # new.html.erb
