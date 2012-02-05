@@ -4,6 +4,7 @@
 * ~~do not populate, automatically, the weekends~~
 * ~~allow to wipe, only if it has not been approved, if the submission_id is empty~~
 * ~~ability to delete individual days~~
+* Submission, add the fields submitted_on and approved_on
 * workday.working_hours can only have two decimals
 * ~~workday index, click on hours takes directly to edit workday~~
 * ~~workday, when editing, once edited redirect to index~~
