@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label :member %><br />
-    <%= f.collection_select :user_id, @users,
+    <%= f.collection_select :user_id, @possible_members,
                             :id, :email,
                             :include_blank => true %>
   </div>
