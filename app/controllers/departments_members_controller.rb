@@ -28,6 +28,7 @@ class DepartmentsMembersController < ApplicationController
     @departments_member = DepartmentsMember.new
     @department_id = params[:department_id]
     @departments_member.department_id = @department_id
+    @possible_members = User.all - Department.find(@department_id).members
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +40,7 @@ class DepartmentsMembersController < ApplicationController
   def edit
     load_auxiliary_data
     @departments_member = DepartmentsMember.find(params[:id])
+    @possible_members = User.all
   end
 
   # POST /departments_members

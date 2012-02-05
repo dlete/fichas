@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label :manager %><br />
-    <%= f.collection_select :user_id, @users,
+    <%= f.collection_select :user_id, @possible_managers,
                             :id, :email,
                             :include_blank => true %>
   </div>
