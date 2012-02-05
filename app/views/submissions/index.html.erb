@@ -29,6 +29,8 @@
     <th>Submitter</th>
     <th>Period begin</th>
     <th>Period end</th>
+    <th>Submitted at</th>
+    <th>Approved at</th>
     <th></th>
     <th></th>
     <th></th>
@@ -39,6 +41,8 @@
     <td><%= submission.submitter.email %></td>
     <td><%= submission.period_begin %></td>
     <td><%= submission.period_end %></td>
+    <td><%= submission.submitted_at %></td>
+    <td><%= submission.approved_at %></td>
     <td><%= link_to 'Show', submission %></td>
     <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
     <td><%= link_to 'Destroy', submission, confirm: 'Are you sure?', method: :delete %></td>

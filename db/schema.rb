@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120121212754) do
+ActiveRecord::Schema.define(:version => 20120205212219) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(:version => 20120121212754) do
     t.datetime "updated_at"
   end
 
+  add_index "departments_members", ["department_id"], :name => "index_departments_members_on_department_id"
+  add_index "departments_members", ["user_id"], :name => "index_departments_members_on_user_id"
+
   create_table "public_holidays", :force => true do |t|
     t.date     "day"
     t.string   "event"
@@ -52,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20120121212754) do
     t.date     "period_end"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "submitted_at"
+    t.date     "approved_at"
   end
 
   create_table "users", :force => true do |t|

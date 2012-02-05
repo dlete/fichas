@@ -56,6 +56,7 @@ class SubmissionsController < ApplicationController
 
     @submission = Submission.new
     @submission.submitter_id = current_user.id
+    @submission.submitted_at = Date.today
     @submission.period_begin = @date.beginning_of_month
     @submission.period_end = @date.end_of_month
     @submission.save
@@ -79,6 +80,7 @@ class SubmissionsController < ApplicationController
     @date = params[:date_in_gui] ? Date.parse(params[:date_in_gui]) : Date.today
     @submission = Submission.new
     @submission.submitter_id = current_user.id
+    @submission.submitted_at = Date.today
     @submission.period_begin = @date.beginning_of_month
     @submission.period_end = @date.end_of_month
     @submission.save
@@ -106,6 +108,7 @@ class SubmissionsController < ApplicationController
   def update
     @submission = Submission.find(params[:id])
     @submission.approver_id = current_user.id
+    @submission.approved_at = Date.today
     @submission.save
     redirect_to submissions_path
 
