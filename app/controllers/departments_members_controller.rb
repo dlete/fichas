@@ -26,6 +26,8 @@ class DepartmentsMembersController < ApplicationController
   def new
     load_auxiliary_data
     @departments_member = DepartmentsMember.new
+    @department_id = params[:department_id]
+    @departments_member.department_id = @department_id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,7 +49,8 @@ class DepartmentsMembersController < ApplicationController
 
     respond_to do |format|
       if @departments_member.save
-        format.html { redirect_to @departments_member, notice: 'Departments member was successfully created.' }
+#        format.html { redirect_to @departments_member, notice: 'Departments member was successfully created.' }
+        format.html { redirect_to @departments_member.department, notice: 'Department member was successfully created.' }
         format.json { render json: @departments_member, status: :created, location: @departments_member }
       else
         format.html { render action: "new" }
