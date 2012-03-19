@@ -25,6 +25,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
+    @user_administrative_manager = user_administrative_manager(current_user)
     @departments_managed_by_user = current_user.departments_managed
     @submissions = Submission.all
 
@@ -136,6 +137,25 @@ class SubmissionsController < ApplicationController
 #      format.json { head :ok }
 #    end
   end
+
+# who is the manager of a user?
+def user_administrative_department(user)
+  # which is the administrative department of a given user
+  user.departments_members(:conditions => {:administrative_department => true}).first.department
+end
+
+def department_manager(department)
+  # who is the official manager of a given department
+  DepartmentsManager.joins(:department).where(:department_id => department, :deputy => false).first.user
+end
+
+def user_administrative_manager(user)
+  # which is the administrative department of this user?
+  @ad = user_administrative_department(user)
+  # who is the manager of that department?
+  @dm = DepartmentsManager.joins(:department).where(:department_id => @ad, :deputy => false).first.user
+end
+# -----------------------------
 
   private
 

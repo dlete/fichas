@@ -1,29 +1,22 @@
 <h1>Listing submissions</h1>
-<h5> <%= link_to 'My workdays', workdays_path %> </h5>
+<%= user_email(current_user) %>
+<br />
+<%= link_to 'My workdays', workdays_path %>
+<br />
+<%= link_to 'Report', reports_my_submissions_path %>
+<br />
+<br />
 
-<table>
-<% @departments_managed_by_user.each do |department| %>
-  <tr>
-    <th><%= department.name %></th>
-  </tr>
-  <tr>
-    <th>Submitter</th>
-  </tr>
-  <% department.members.each do |user| %>
-  <tr>
-      <td><%= user.email %></td>
-      <% @pending_approval_for_user = Submission.find(:all, :conditions => { :submitter_id => user.id, :approver_id => nil }) %>
-      <% @pending_approval_for_user.each do |submission| %>
-      <% @submission_period = submission.workdays.first.working_date %>
-      <td><%= link_to 'Pending approval', submission %></td>
-      <% end %>
-  </tr>
-  <% end %>
-<% end %>
-</table>
+<%= render "user_pending_approvals" %>
+<br />
+<br />
+
+<%= render "manager_pending_approvals" %>
+<br />
 <br />
 
 
+<% unless current_user.departments_managed.empty? %>
 <table>
   <tr>
     <th>Submitter</th>
@@ -53,3 +46,5 @@
 <br />
 
 <%= link_to 'New Submission', new_submission_path %>
+
+<% end %>

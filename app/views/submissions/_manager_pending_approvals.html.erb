@@ -1,0 +1,27 @@
+<% unless current_user.departments_managed.empty? %>
+Groups I manage
+<br />
+<table>
+<% @departments_managed_by_user.each do |department| %>
+  <tr>
+    <th><%= department.name %></th>
+  </tr>
+  <tr>
+    <th>Submitter</th>
+  </tr>
+  <% department.members.each do |user| %>
+  <tr>
+      <td><%= user.email %></td>
+      <% @pending_approval_for_user = Submission.find(:all, :conditions => { :submitter_id => user.id, :approver_id => nil }) %>
+      <% @pending_approval_for_user.each do |submission| %>
+        <td>
+          <%= link_to(submission) do %>
+            <%= submission.period_begin.year %> <%= Date::MONTHNAMES[submission.period_begin.month] %>, <%= submission.workdays.sum(:working_hours) %> hours
+          <% end %>
+        </td>
+      <% end %>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<% end %>

@@ -1,0 +1,15 @@
+<h4>My submissions</h4>
+<table>
+<tr>
+<th>Month</th>
+<th>Status</th>
+<th>To be approved by</th>
+</tr>
+<% current_user.submissions(:conditions => {:approver_id => nil}).each do |pending_submission| %>
+  <tr>
+  <td><%= pending_submission.period_begin.year %>, <%= Date::MONTHNAMES[pending_submission.period_begin.month] %></td>
+  <td>Pending approval</td>
+  <td><%= @user_administrative_manager.email %></td>
+  </tr>
+<% end %>
+</table>
